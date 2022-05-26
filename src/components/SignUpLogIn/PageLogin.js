@@ -2,11 +2,20 @@ import ImglLogo from "../.././assets/ImglLogo.png"
 import Bottom from "./Bottom"
 import { useState } from "react";
 import axios from "axios";
+import UserContext from '../.././context/datesUser';
+import { useContext } from "react";
+import { useNavigate } from "react-router-dom"
+
+
 
 export default function PageLogin(){
    
     const [email, setEmail]=useState("")
     const [password, setPassword ]=useState("")
+
+    const  {dates, setDates} = useContext(UserContext)
+
+    let navigate = useNavigate();
 
     function postedate(event){
 
@@ -27,7 +36,15 @@ export default function PageLogin(){
 
     function tratarSucesso(resposta) {
         const statusCode = resposta.data;
+    
         console.log(statusCode);
+
+        setDates(resposta.data.token)
+        console.log (dates)
+
+        navigate(`/habitos`);
+
+
     }
 
     function tratarFalha(erro) {
@@ -41,6 +58,12 @@ export default function PageLogin(){
         <img src={ImglLogo} alt="logo" />
 
         <Bottom TextButton={"Entrar"} TextFim={"Não tem uma conta? Cadastre-se!"} Olink={"/cadastro"} setEmail={setEmail} setPassword={setPassword} postedate={postedate}/>
+        
+        
+        <h1>{dates.token}</h1>
+        
+        
         </>
+
     )
 }
