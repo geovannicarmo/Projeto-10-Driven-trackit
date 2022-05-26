@@ -20,12 +20,16 @@ export default function Habits(){
 
     const nameHabito =[]
 
+    const[atualizaLista, setAtualizaLista] = useState(true)
+
     const[addHabit, setAddHabit] = useState(false)
     
+   
 
     function clickedPlus(){
         console.log("clickedplus")
         setAddHabit(true)
+        setAtualizaLista(false)
 
     }
 
@@ -33,6 +37,7 @@ export default function Habits(){
     function clickedCancel(){
         console.log("clickedplus")
         setAddHabit(false)
+        setAtualizaLista(true)
 
     }
 
@@ -40,6 +45,7 @@ export default function Habits(){
 
    function clickedSave(){
 
+       
 
     const datesHabit= {name: nameHabito[nameHabito.length-1], days:daysCheck}
 
@@ -56,6 +62,12 @@ export default function Habits(){
 
     request.then(tratarSucesso); 
     request.catch(tratarFalha);
+
+    setAddHabit(false)
+
+    console.log(atualizaLista)
+    setAtualizaLista(true)
+
    }
 
    function tratarSucesso(resposta) {
@@ -89,7 +101,7 @@ function tratarFalha(erro) {
                 {  !addHabit ? 
                 <></>
                 :
-
+                    
                     <ConteinerCriaHabito>
 
                 <Input nameHabito={nameHabito}/>
@@ -101,7 +113,7 @@ function tratarFalha(erro) {
                     index={index}/>)
                 }
                 </WeekStyle>
-                {/* <h1>{dates}</h1> */}
+              
             <Buttons>
                 <div>
                     <h1 id="cancelar" onClick={clickedCancel}>Cancelar</h1>
@@ -117,10 +129,19 @@ function tratarFalha(erro) {
             </Buttons>
 
                 </ConteinerCriaHabito>
+               
                 }
 
-                { <ShowHabits datesHabit={"datesHabit"}/> } 
+                { !atualizaLista? 
+                <></>
+                :
+
+                 <ShowHabits datesHabit={"datesHabit"} atualizaLista={atualizaLista}/> 
+
+                }
+
                 <h2> Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
+              
         <Botton/>
         
         </>
@@ -184,8 +205,12 @@ background-color: #FFFFFF;
 margin-bottom: 30px;
 width: 90%;
 height: 180px;
+margin-left: 5%;
+
 
 `
+
+
 
 const Buttons = styled.div`
 display: flex;

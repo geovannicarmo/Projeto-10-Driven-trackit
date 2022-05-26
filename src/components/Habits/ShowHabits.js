@@ -3,22 +3,15 @@ import UserContext from '../../context/datesUser'
 import { useContext } from "react";
 import { useState } from "react";
 import { useEffect } from "react";
+import ShowHabit from "./ShowHabit";
+import styled from "styled-components";
 
 
 export default function ShowHabits({datesHabit}){
 
     const [arrayHabits, setArrayHabits]=useState(false)
 
-   function NameHabits({day}){
-
-    console.log(day)
-       return (
-           <>
-           <h1>{day.name}</h1>
-           <h1>{day.days}</h1>
-           </>
-       )
-    }
+ 
 
 
 	
@@ -60,15 +53,31 @@ function tratarFalha(erro) {
 
     return(
         <>
+
                  {
                      !arrayHabits
                      ?
                      <>cd</>
                      :
-                    arrayHabits.map((name, index)=><NameHabits day={name} key={index} 
+                     <HabitsStyle>
+                         {
+                         
+                    arrayHabits.map((name, index)=><ShowHabit day={name} key={index} 
                     index={index}/>)
+                         }
+
+                    </HabitsStyle>
                 }
             
             </>
     )
 }
+
+const HabitsStyle = styled.div`
+
+display: flex;
+justify-content: center;
+flex-direction: column;
+align-items: center;
+margin-bottom: 70px;
+`
