@@ -1,38 +1,52 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import LoaderComponent from "../Geral/Loader"
 
-export default function Bottom({TextButton, TextFim, Olink, dados, setName, setPassword, postedate, SignUp, setEmail, setimage}){
+export default function Bottom({TextButton, TextFim, Olink, dados, setName, setPassword, postedate, SignUp, setEmail, setimage, loader}){
 
-
+console.log(loader)
 
     return(
 <>
 
 
-    <form >
-        <Form>
-        <input placeholder="E-mail"  onChange={e => setEmail(e.target.value)} />
+   
+        <Form >
+        <input placeholder="E-mail"  onChange={e => setEmail(e.target.value)} disabled={loader}/>
         
-        <input placeholder="senha"  onChange={e => setPassword(e.target.value)} />
+        <input placeholder="senha"  onChange={e => setPassword(e.target.value)}  disabled={loader}/>
 
         {
             !SignUp ? 
             <></>
             :
             <>
-            <input placeholder="Nome"  onChange={e => setName(e.target.value)} />
+            <input placeholder="Nome"  onChange={e => setName(e.target.value)} disabled={loader}/>
 
-            <input placeholder="Foto"  onChange={e => setimage(e.target.value)} />
+            <input placeholder="Foto"  onChange={e => setimage(e.target.value)} disabled={loader}/>
             </>
         
             
         }
 
-        <Button onClick={postedate}> <h1>{TextButton}</h1>  </Button >
+        
+
+            <Button onClick={postedate} disabled={loader}> 
+            {
+                !loader ?
+                <h1>{TextButton}</h1> 
+                : <LoaderComponent/>
+                } 
+                
+                 </Button >
+            
+            
+        
+
       
        
         </Form>
-        </form>
+       
 
         <Text>
         <Link to={Olink}> {TextFim}</Link>
@@ -42,7 +56,7 @@ export default function Bottom({TextButton, TextFim, Olink, dados, setName, setP
 }
 
 
-const Button = styled.div`
+const Button = styled.button`
 width: 303px;
 height: 45px;
 background-color:#52B6FF;
@@ -68,7 +82,7 @@ font-size: 16px;
 
 
 
-const Form = styled.div`
+const Form = styled.form`
 
 display: flex;
 flex-direction: column;

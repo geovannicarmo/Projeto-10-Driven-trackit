@@ -3,18 +3,21 @@ import './reset.css'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import PageLogin from './components/SignUpLogIn/PageLogin';
 import PageSignUp from './components/SignUpLogIn/PageSignUp';
+import Today from './components/Today/Today';
 import Habits from './components/Habits/Habits';
 import History from './components/history/History';
-
+import UserContextImg from './context/dateimage';
 import UserContext from './context/datesUser';
 import { useState } from 'react';
 
 function App() {
 
 const[dates, setDates]=useState(5)
+const[contextImg, setContextImg]=useState()
 
   return (
-<UserContext.Provider value={{dates, setDates}}>
+<UserContext.Provider value={{dates, setDates, contextImg, setContextImg}}>
+  
 
 <BrowserRouter>
 <Routes>
@@ -24,6 +27,7 @@ const[dates, setDates]=useState(5)
 <Route path="/cadastro" element={<PageSignUp/>}/>
 <Route path="/habitos" element={<Habits/>}/>
 <Route path="/historico" element={<History/>}/>
+<Route path="/hoje" element={<Today/>}/>
 
 
 </Routes>

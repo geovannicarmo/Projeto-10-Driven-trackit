@@ -8,19 +8,21 @@ import axios from 'axios'
 import UserContext from '../../context/datesUser'
 import { useContext } from "react";
 import ShowHabits from './ShowHabits'
+import LoaderComponent from '../Geral/Loader'
 
 
 export default function Habits(){
 
     const  {dates, setDates} = useContext(UserContext)
 
-    const arrayWeek = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
+    const arrayWeek = ['D','S','T','Q','Q','S','S']
 
     const daysCheck = []
 
     const nameHabito =[]
 
     const[atualizaLista, setAtualizaLista] = useState(true)
+    const[atualizaLista1, setAtualizaLista1] = useState(false)
 
     const[addHabit, setAddHabit] = useState(false)
     
@@ -45,7 +47,7 @@ export default function Habits(){
 
    function clickedSave(){
 
-       
+    setAtualizaLista1(true)
 
     const datesHabit= {name: nameHabito[nameHabito.length-1], days:daysCheck}
 
@@ -63,21 +65,26 @@ export default function Habits(){
     request.then(tratarSucesso); 
     request.catch(tratarFalha);
 
-    setAddHabit(false)
+   
 
     console.log(atualizaLista)
-    setAtualizaLista(true)
+    
 
    }
 
    function tratarSucesso(resposta) {
 	const statusCode = resposta.data;
 	console.log(statusCode);
+    setAtualizaLista(true)
+    setAddHabit(false)
+    setAtualizaLista1(false)
 }
 
 function tratarFalha(erro) {
 	const statusCode = erro.response.status;
 	console.log(statusCode);
+    setAtualizaLista1(false)
+
 }
 
    
@@ -114,17 +121,18 @@ function tratarFalha(erro) {
                 }
                 </WeekStyle>
               
-            <Buttons>
-                <div>
-                    <h1 id="cancelar" onClick={clickedCancel}>Cancelar</h1>
+            <Buttons >
+                
+                   <button id="cancelar" onClick={clickedCancel} disabled={atualizaLista1}> <h1>Cancelar
+                   </h1>
+                   </button> 
+                
 
-                </div>
+                   <button  id='salvar'  onClick={clickedSave} disabled={atualizaLista1} >
 
-                <div id='salvar'  onClick={clickedSave}>
-
-                    <h1>Salvar</h1>
+                    {!atualizaLista1 ? <h1>Salvar</h1> : <LoaderComponent/> }
                     
-                </div>
+                </button>
 
             </Buttons>
 
@@ -136,11 +144,10 @@ function tratarFalha(erro) {
                 <></>
                 :
 
-                 <ShowHabits datesHabit={"datesHabit"} atualizaLista={atualizaLista}/> 
+                 <ShowHabits datesHabit={"datesHabit"} setAtualizaLista={setAtualizaLista}/> 
 
                 }
 
-                <h2> Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h2>
               
         <Botton/>
         

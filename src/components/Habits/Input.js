@@ -7,24 +7,26 @@ export default function Input({nameHabito}){
 
     const [nameHabit, setNameHabit]=useState("")
 
+ 
+
     nameHabito.push(nameHabit)
     
 
     return(
 
-    <form >
+    
     <Form>
-    <input placeholder="nome do hábito"  onChange={e => setNameHabit(e.target.value)} />
+    <input   disabled={false} placeholder="Nome do hábito"  onChange={e => setNameHabit(e.target.value)} />
     
     </Form>
-    </form>
+    
     )
 }
 
 
 
 
-const Form = styled.div`
+const Form = styled.form`
 
 display: flex;
 flex-direction: column;

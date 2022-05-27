@@ -7,7 +7,7 @@ import ShowHabit from "./ShowHabit";
 import styled from "styled-components";
 
 
-export default function ShowHabits({datesHabit}){
+export default function ShowHabits({datesHabit, setAtualizaLista}){
 
     const [arrayHabits, setArrayHabits]=useState(false)
 
@@ -57,13 +57,17 @@ function tratarFalha(erro) {
                  {
                      !arrayHabits
                      ?
-                     <>cd</>
+                     <>Carregando</>
                      :
+                     arrayHabits.length===0?
+                     <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
+                     :
+
                      <HabitsStyle>
                          {
                          
                     arrayHabits.map((name, index)=><ShowHabit day={name} key={index} 
-                    index={index}/>)
+                    index={index} setAtualizaLista={setAtualizaLista}/>)
                          }
 
                     </HabitsStyle>

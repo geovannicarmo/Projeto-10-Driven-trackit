@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
+
 export default function PageLogin(){
    
     const [email, setEmail]=useState("")
@@ -15,9 +16,18 @@ export default function PageLogin(){
 
     const  {dates, setDates} = useContext(UserContext)
 
+    const  {contextImg, setContextImg} = useContext(UserContext)
+
+    const [loader, setLoader] = useState(false)
+
     let navigate = useNavigate();
 
+    
+
     function postedate(event){
+
+        setLoader(true)
+       
 
         event.preventDefault();
         
@@ -40,7 +50,11 @@ export default function PageLogin(){
         console.log(statusCode);
 
         setDates(resposta.data.token)
+        setContextImg(resposta.data.image)
+
         console.log (dates)
+
+        setLoader(false)
 
         navigate(`/habitos`);
 
@@ -50,6 +64,8 @@ export default function PageLogin(){
     function tratarFalha(erro) {
         const statusCode = erro.response.status;
         console.log(statusCode);
+
+        setLoader(false)
     }
 
     return(
@@ -57,7 +73,7 @@ export default function PageLogin(){
 
         <img src={ImglLogo} alt="logo" />
 
-        <Bottom TextButton={"Entrar"} TextFim={"Não tem uma conta? Cadastre-se!"} Olink={"/cadastro"} setEmail={setEmail} setPassword={setPassword} postedate={postedate}/>
+        <Bottom TextButton={"Entrar"} TextFim={"Não tem uma conta? Cadastre-se!"} Olink={"/cadastro"} setEmail={setEmail} setPassword={setPassword} postedate={postedate}  loader={loader}/>
         
         
         <h1>{dates.token}</h1>

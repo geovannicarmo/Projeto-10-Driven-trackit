@@ -7,7 +7,7 @@ import axios from "axios";
 
 
 
-export default function ShowHabit({day}){
+export default function ShowHabit({day, setAtualizaLista}){
 
 
     const  {dates, setDates} = useContext(UserContext)
@@ -28,20 +28,20 @@ export default function ShowHabit({day}){
 
 
    function Delet (){
-       
-       
+    setAtualizaLista(false)
+  
 		const request = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
 
-    request.then(()=>(console.log("deletado")))
+    request.then(()=>setAtualizaLista(true))
 
-        return(
-            <h1>Deletado</h1>
-        )
+    
+
+        
     }
 
  
    
-    const arrayWeek = ['Dom','Seg','Ter','Qua','Qui','Sex','Sab']
+    const arrayWeek = ['D','S','T','Q','Q','S','S']
 
     return(
                <Habitstyled>

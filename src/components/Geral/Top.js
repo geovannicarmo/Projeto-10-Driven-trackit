@@ -2,18 +2,19 @@ import UserContext from '../.././context/datesUser';
 import { useContext } from "react";
 import styled from "styled-components";
 import TrackIt from "../.././assets/TrackIt.png"
+import UserContextImg from '../../context/dateimage';
 
 
 export default function Top(){
 
-    const  {dates, setDates} = useContext(UserContext)
+    const  {contextImg, setContextImg} = useContext(UserContext)
 
 
     return(
         <>
         <Topo>
         <img id="logo" src={TrackIt} alt="" />
-        <img id="foto" src={dates.image} alt="" />
+        <img id="foto" src={contextImg} alt="" />
         </Topo>
         
         </>

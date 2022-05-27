@@ -15,12 +15,15 @@ export default function PageSignUp(){
     const [password, setPassword ]=useState("")
     const [email, setEmail ]=useState("")
     const [image, setimage ]=useState("")
+    const [loader, setLoader] = useState(false)
 
     let navigate = useNavigate();
 
 
 
     function postedate(event){
+
+        setLoader(true)
 
         event.preventDefault();
 
@@ -43,6 +46,7 @@ export default function PageSignUp(){
     function tratarSucesso(resposta) {
         const statusCode = resposta.status;
         console.log(statusCode);
+        setLoader(false)
 
         navigate(`/`);
     }
@@ -50,13 +54,14 @@ export default function PageSignUp(){
     function tratarFalha(erro) {
         const statusCode = erro.response.status;
         console.log("o erro foi:" + statusCode);
+        setLoader(false)
     }
 
     return(
         <>
             <img src={ImglLogo} alt="logo" />
 
-            <Bottom TextButton={"Cadastrar"} TextFim={"Já tem uma conta? Faça login!"} Olink={"/"}  setName={setName} setPassword={setPassword} postedate={postedate} SignUp={true} setEmail={setEmail} setimage={setimage}/>
+            <Bottom TextButton={"Cadastrar"} TextFim={"Já tem uma conta? Faça login!"} Olink={"/"}  setName={setName} setPassword={setPassword} postedate={postedate} SignUp={true} setEmail={setEmail} setimage={setimage} loader={loader}/>
         </>
     )
 }
