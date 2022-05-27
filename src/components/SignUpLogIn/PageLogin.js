@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom"
 
 
 
+
 export default function PageLogin(){
    
     const [email, setEmail]=useState("")
@@ -56,7 +57,7 @@ export default function PageLogin(){
 
         setLoader(false)
 
-        navigate(`/habitos`);
+        navigate(`/hoje`);
 
 
     }

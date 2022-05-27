@@ -14,6 +14,12 @@ export default function Botton(){
         </h1>
         </Link>
 
+        <Link to="/hoje">
+        <h1>
+            Hoje
+        </h1>
+        </Link>
+
         <Link to="/historico">
         <h1>
             Historico
