@@ -1,9 +1,15 @@
 import axios from "axios";
 import styled from "styled-components"
 import { useEffect } from "react";
+import UserContext from "../../context/datesUser"
+import { useContext } from "react";
 
 
-export default function TodayHabits({name, index, id, done, highestSequence, currentSequence, feitos, config, setArrayHabits, setMostraHabit}){
+export default function TodayHabits({name, index, id, done, highestSequence, currentSequence, feitos, setFeitos, config, setArrayHabits, setMostraHabit}){
+
+    const  {feito, setFeito} = useContext(UserContext)
+
+
 
 
     function Marcar(){
@@ -31,12 +37,7 @@ export default function TodayHabits({name, index, id, done, highestSequence, cur
     }
 
 
-
-    console.log(done)
-    if(done===false){
-        feitos.push(1)
-    }
-    console.log(feitos)
+  
 
     return(
         <Container>
@@ -103,6 +104,8 @@ const Container = styled.div`
         color: ${props => !props.selectd2 ? "" : "#8FC549"}; 
 
  }
+
+
  
  `
 

@@ -1,8 +1,15 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
+import UserContext from "../../context/datesUser"
+import { useContext } from "react";
+import { CircularProgressbar } from 'react-circular-progressbar';
+import 'react-circular-progressbar/dist/styles.css';
+import ImglLogo from "../.././assets/ImglLogo.png"
 
 
 export default function Botton(){
+
+    const  {feito, setFeito} = useContext(UserContext)
 
     return(
         <>
@@ -15,9 +22,10 @@ export default function Botton(){
         </Link>
 
         <Link to="/hoje">
-        <h1>
-            Hoje
-        </h1>
+
+        <Bar>
+        <CircularProgressbar value={feito} text={`Hoje`} />
+        </Bar>
         </Link>
 
         <Link to="/historico">
@@ -52,4 +60,11 @@ h1{
     font-size: 18px;
     text-decoration: none;
 }
+`
+
+const Bar = styled.div`
+width: 100px;
+color: blue;
+
+
 `

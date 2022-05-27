@@ -1,16 +1,17 @@
 import styled from "styled-components"
 import { Link } from "react-router-dom"
 import LoaderComponent from "../Geral/Loader"
+import ImglLogo from "../.././assets/ImglLogo.png"
 
 export default function Bottom({TextButton, TextFim, Olink, dados, setName, setPassword, postedate, SignUp, setEmail, setimage, loader}){
 
 console.log(loader)
 
     return(
-<>
-
-
-   
+<Containar>
+<Image>
+    <img src={ImglLogo} alt="logo" />
+    </Image>
         <Form >
         <input placeholder="E-mail"  onChange={e => setEmail(e.target.value)} disabled={loader}/>
         
@@ -40,18 +41,14 @@ console.log(loader)
                 
                  </Button >
             
-            
-        
 
-      
-       
         </Form>
        
 
         <Text>
         <Link to={Olink}> {TextFim}</Link>
         </Text>   
-</>
+</Containar>
     )
 }
 
@@ -65,6 +62,7 @@ border-radius: 5px;
 display: flex;
 justify-content: center;
 align-items: center;
+margin-left: 20%;
 cursor: pointer;
 
 h1{
@@ -78,6 +76,8 @@ color: #52B6FF;
 font-weight: bold;
 text-decoration: underline;
 font-size: 16px;
+margin-left: 20%;
+margin-bottom: 40px;
 `
 
 
@@ -96,4 +96,11 @@ margin-bottom: 20px;
 margin-top: 20px;
 margin-left:  30px;
 }
+`
+const Containar = styled.div`
+
+`
+
+const Image = styled.div`
+margin-left: 24%;
 `

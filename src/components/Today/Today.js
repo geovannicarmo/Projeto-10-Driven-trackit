@@ -10,6 +10,7 @@ import { useContext } from "react";
 import { useEffect } from "react";
 import TodayHabits from "./TodayHabits";
 import Habits from "../Habits/Habits";
+import TodayTop from "./TodayTop";
 
 export default function Today(){
 
@@ -19,7 +20,7 @@ export default function Today(){
     const day = dayjs().locale("pt-br").format('DD/MM')
     const {concluido, setConcluido} = (0)
 
-    const feitos = []
+    const [feitos, setFeitos] = useState(0)
 
     const  {dates, setDates} = useContext(UserContext)
 
@@ -39,34 +40,43 @@ export default function Today(){
 
 
     }, [mostraHabit]);
-console.log(feitos)
 
-    console.log(arrayHabits)
+
     return(
         <>
             <Top/>
 
+           
+
             <Header>    
-               <h1>{now}  {day}</h1>
+
+                {!arrayHabits? <></>
+        :
+            <TodayTop arrayHabits={arrayHabits}/>
+        }
+
+               {/* <h1>{now}  {day}</h1>
                {
                !arrayHabits ? <></>
                :
                (feitos.length/arrayHabits.length)*100 ===0 ? <h2> Nenhum hábito concluído ainda </h2>
                :
-               <h2 id="comecou">{((feitos/arrayHabits.length)*100).toFixed()}% dos hábitos concluídos</h2>
+               <h2 id="comecou">{((feitos/arrayHabits.length)*100).toFixed()}% dos hábitos concluídos</h2> */}
 
 
-               }
+               {/* } */}
                 </Header>
                 <DatasHabits>
 
-                    {!mostraHabit ? <></> :
+                    {
                 
                 
                     !arrayHabits ? <></>
                     :
-                    arrayHabits.map((habits, index)=>  <TodayHabits name={habits.name} id={habits.id} index={index} key={index} done={habits.done} currentSequence={habits.currentSequence} highestSequence={habits.highestSequence} feitos={feitos} config={config} setArrayHabits={setArrayHabits}  setMostraHabit={setMostraHabit}/>)
+                    arrayHabits.map((habits, index)=>  <TodayHabits name={habits.name} id={habits.id} index={index} key={index} done={habits.done} currentSequence={habits.currentSequence} highestSequence={habits.highestSequence} feitos={feitos} config={config} setArrayHabits={setArrayHabits}  setMostraHabit={setMostraHabit}  setFeitos={setFeitos} />)
                 }
+
+              
             
                 </DatasHabits>
 

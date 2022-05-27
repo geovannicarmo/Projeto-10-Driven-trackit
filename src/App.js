@@ -14,9 +14,10 @@ function App() {
 
 const[dates, setDates]=useState(5)
 const[contextImg, setContextImg]=useState()
+const[feito, setFeito]=useState(0)
 
   return (
-<UserContext.Provider value={{dates, setDates, contextImg, setContextImg}}>
+<UserContext.Provider value={{dates, setDates, contextImg, setContextImg, feito, setFeito}}>
   
 
 <BrowserRouter>

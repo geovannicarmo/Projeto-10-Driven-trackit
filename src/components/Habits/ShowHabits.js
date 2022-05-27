@@ -31,7 +31,7 @@ export default function ShowHabits({datesHabit, setAtualizaLista}){
      useEffect(()=> {
     const request = axios.get('https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits', config)
     
-    request.then(tratarSucesso)
+  
     
 
     request.then(tratarSucesso); 
@@ -55,11 +55,8 @@ function tratarFalha(erro) {
         <>
 
                  {
-                     !arrayHabits
-                     ?
-                     <>Carregando</>
-                     :
-                     arrayHabits.length===0?
+                    
+                     arrayHabits.length===0 || !arrayHabits ?
                      <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                      :
 

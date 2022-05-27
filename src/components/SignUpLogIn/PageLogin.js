@@ -72,12 +72,11 @@ export default function PageLogin(){
     return(
         <>
 
-        <img src={ImglLogo} alt="logo" />
+        
 
         <Bottom TextButton={"Entrar"} TextFim={"Não tem uma conta? Cadastre-se!"} Olink={"/cadastro"} setEmail={setEmail} setPassword={setPassword} postedate={postedate}  loader={loader}/>
         
         
-        <h1>{dates.token}</h1>
         
         
         </>

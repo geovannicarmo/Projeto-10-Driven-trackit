@@ -59,9 +59,10 @@ export default function PageSignUp(){
 
     return(
         <>
-            <img src={ImglLogo} alt="logo" />
+            
 
             <Bottom TextButton={"Cadastrar"} TextFim={"Já tem uma conta? Faça login!"} Olink={"/"}  setName={setName} setPassword={setPassword} postedate={postedate} SignUp={true} setEmail={setEmail} setimage={setimage} loader={loader}/>
+            
         </>
     )
 }
