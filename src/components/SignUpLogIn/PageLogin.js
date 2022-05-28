@@ -65,6 +65,7 @@ export default function PageLogin(){
     function tratarFalha(erro) {
         const statusCode = erro.response.status;
         console.log(statusCode);
+        alert("Dados incorretos")
 
         setLoader(false)
     }

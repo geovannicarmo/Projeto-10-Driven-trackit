@@ -28,13 +28,17 @@ export default function ShowHabit({day, setAtualizaLista}){
 
 
    function Delet (){
+
+    if (window.confirm("Deseja excluir o Habito?")) {
+       
+
     setAtualizaLista(false)
   
 		const request = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
 
     request.then(()=>setAtualizaLista(true))
 
-    
+    }
 
         
     }

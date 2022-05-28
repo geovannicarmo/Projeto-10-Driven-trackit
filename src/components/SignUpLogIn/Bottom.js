@@ -54,7 +54,7 @@ console.log(loader)
 
 
 const Button = styled.button`
-width: 303px;
+width: 80%;
 height: 45px;
 background-color:#52B6FF;
 margin-bottom: 25px;
@@ -62,7 +62,7 @@ border-radius: 5px;
 display: flex;
 justify-content: center;
 align-items: center;
-margin-left: 20%;
+margin-left: 30px;
 cursor: pointer;
 
 h1{

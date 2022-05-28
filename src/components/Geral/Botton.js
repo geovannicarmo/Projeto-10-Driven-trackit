@@ -60,10 +60,14 @@ h1{
     font-size: 18px;
     text-decoration: none;
 }
+a{
+    text-decoration: none;
+}
 `
 
 const Bar = styled.div`
-width: 100px;
+width: 75px;
+margin-bottom: 20px;
 color: blue;
 
 

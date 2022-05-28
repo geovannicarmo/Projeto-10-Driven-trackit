@@ -55,6 +55,7 @@ export default function PageSignUp(){
         const statusCode = erro.response.status;
         console.log("o erro foi:" + statusCode);
         setLoader(false)
+        alert("Dados incorretos")
     }
 
     return(
