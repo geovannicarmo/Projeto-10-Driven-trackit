@@ -15,6 +15,14 @@ export default function Habits(){
 
     const  {dates, setDates} = useContext(UserContext)
 
+  
+
+    const  {arrayCancel, setArrayCancel} = useContext(UserContext)
+
+   
+
+    
+
     const arrayWeek = ['D','S','T','Q','Q','S','S']
 
     const daysCheck = []
@@ -24,7 +32,11 @@ export default function Habits(){
     const[atualizaLista, setAtualizaLista] = useState(true)
     const[atualizaLista1, setAtualizaLista1] = useState(false)
 
+    const[textCancel, setTextCancel] = useState("")
+
     const[addHabit, setAddHabit] = useState(false)
+
+    const [nameHabit, setNameHabit]=useState("")
     
    
 
@@ -37,15 +49,25 @@ export default function Habits(){
 
     
     function clickedCancel(){
+
+        setTextCancel(nameHabito[nameHabito.length-1])
+
         console.log("clickedplus")
         setAddHabit(false)
         setAtualizaLista(true)
+
+        setArrayCancel(daysCheck)
+        console.log(daysCheck)
 
     }
 
 
 
    function clickedSave(){
+
+    setTextCancel("")
+
+    
 
     setAtualizaLista1(true)
 
@@ -78,12 +100,15 @@ export default function Habits(){
     setAtualizaLista(true)
     setAddHabit(false)
     setAtualizaLista1(false)
+    setNameHabit("")
+    
 }
 
 function tratarFalha(erro) {
 	const statusCode = erro.response.status;
 	console.log(statusCode);
     setAtualizaLista1(false)
+    alert("Digite os dados do hábito")
 
 }
 
@@ -111,13 +136,14 @@ function tratarFalha(erro) {
                     
                     <ConteinerCriaHabito>
 
-                <Input nameHabito={nameHabito}/>
+                <Input nameHabito={nameHabito} atualizaLista1={atualizaLista1}  setTextCancel={setTextCancel} textCancel={textCancel} setNameHabit={setNameHabit} nameHabit={nameHabit}/>
 
                 <WeekStyle>
 
                 {
                     arrayWeek.map((day, index)=><AddHabit day={day} key={index} click={false} daysCheck={daysCheck} 
-                    index={index}/>)
+                    index={index}  atualizaLista1={atualizaLista1}/>)
+
                 }
                 </WeekStyle>
               

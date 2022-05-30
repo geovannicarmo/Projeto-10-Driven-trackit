@@ -1,9 +1,20 @@
 import styled from "styled-components"
 import { useState } from "react"
+import UserContext from "../../context/datesUser"
+import { useContext } from "react" 
 
-export default function AddHabit({day, daysCheck, index}){
+export default function AddHabit({day, daysCheck, index, atualizaLista1}){
 
     const[clicked, setClicked]= useState(false)
+
+    const[arrayCancel, setArrayCancel] = useState([])
+    console.log(arrayCancel)
+
+
+    // const found = arrayCancel.find(element => element===day)
+    
+    // found = clicked
+
 
     if(clicked===true){
         daysCheck.push(index)
@@ -18,7 +29,7 @@ export default function AddHabit({day, daysCheck, index}){
        
             <DayStyle selectd={clicked} 
 
-            onClick={()=>setClicked(!clicked)}>
+            onClick={()=>setClicked(!clicked)}  disabled={atualizaLista1}>
                 <h1>{day}</h1>
 
             </DayStyle>
@@ -26,7 +37,7 @@ export default function AddHabit({day, daysCheck, index}){
     )
 }
 
-const DayStyle = styled.div`
+const DayStyle = styled.button`
 
 
 background-color: ${props => !props.selectd ? "" : "#CFCFCF"};

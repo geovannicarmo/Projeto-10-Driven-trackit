@@ -3,6 +3,7 @@ import styled from "styled-components"
 import { useEffect } from "react";
 import UserContext from "../../context/datesUser"
 import { useContext } from "react";
+import { BsCheckLg } from 'react-icons/bs'
 
 
 export default function TodayHabits({name, index, id, done, highestSequence, currentSequence, feitos, setFeitos, config, setArrayHabits, setMostraHabit}){
@@ -49,7 +50,7 @@ export default function TodayHabits({name, index, id, done, highestSequence, cur
         </DatasHabit>
 
         <Check selectd={done}  onClick={!done ? Marcar : Desmarcar}>
-            opa
+            <BsCheckLg/>
         </Check>
 
         </Container>
@@ -63,6 +64,9 @@ background-color: ${props => !props.selectd ? "8FC549" : "#8FC549"};
 margin-top: 13px;
 position: absolute;
 right: 13px;
+
+font-size: 30px;
+color: magenta;
 `
 const Container = styled.div`
  height: 94px;

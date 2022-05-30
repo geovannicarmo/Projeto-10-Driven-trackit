@@ -3,9 +3,10 @@ import { useState } from 'react'
 
 
 
-export default function Input({nameHabito}){
+export default function Input({nameHabito, atualizaLista1, textCancel, setNameHabit, nameHabit}){
 
-    const [nameHabit, setNameHabit]=useState("")
+  
+    let textCancelvar = textCancel;
 
  
 
@@ -16,7 +17,11 @@ export default function Input({nameHabito}){
 
     
     <Form>
-    <input   disabled={false} placeholder="Nome do hábito"  onChange={e => setNameHabit(e.target.value)} />
+    <input   placeholder="Nome do hábito" 
+    
+    value={nameHabit} 
+    onChange={e => setNameHabit(`${e.target.value}`)} 
+    disabled={atualizaLista1} />
     
     </Form>
     

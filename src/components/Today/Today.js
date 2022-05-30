@@ -24,6 +24,8 @@ export default function Today(){
 
     const  {dates, setDates} = useContext(UserContext)
 
+    const  {totalHabit, setTotalHabit} = useContext(UserContext)
+
     const [arrayHabits, setArrayHabits]= useState(null)
 
     const [mostraHabit, setMostraHabit] = useState(true)
@@ -36,7 +38,10 @@ export default function Today(){
 
     useEffect(()=>{
         const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config)
-        request.then(answer=> {setArrayHabits(answer.data)});
+        request.then(answer=> {setArrayHabits(answer.data)
+        
+            setTotalHabit(answer.data.length)
+        });
 
 
     }, [mostraHabit]);
@@ -46,16 +51,18 @@ export default function Today(){
         <>
             <Top/>
 
-           
+            
 
-            <Header>    
+            <Header>   
+
+            <h1>{now}   {day}</h1>
 
                 {!arrayHabits? <></>
         :
             <TodayTop arrayHabits={arrayHabits}/>
         }
 
-               {/* <h1>{now}  {day}</h1>
+               {/* 
                {
                !arrayHabits ? <></>
                :
@@ -95,6 +102,7 @@ h1{
     color: #126BA5;
     font-size: 23px;
     font-weight: 400;
+    margin-bottom: 10px;
 
 }
 

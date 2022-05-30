@@ -4,13 +4,16 @@ import { useEffect } from "react"
 import UserContext from '../../context/datesUser'
 import { useContext } from "react";
 import axios from "axios";
+import { BiTrash } from 'react-icons/bi'
 
 
 
-export default function ShowHabit({day, setAtualizaLista}){
+export default function ShowHabit({day, setAtualizaLista, setArrayHabitsteste}){
 
 
     const  {dates, setDates} = useContext(UserContext)
+
+    
 
   
     console.log(day)
@@ -29,6 +32,8 @@ export default function ShowHabit({day, setAtualizaLista}){
 
    function Delet (){
 
+    setArrayHabitsteste(false)
+
     if (window.confirm("Deseja excluir o Habito?")) {
        
 
@@ -36,7 +41,8 @@ export default function ShowHabit({day, setAtualizaLista}){
   
 		const request = axios.delete(`https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/${id}`, config);
 
-    request.then(()=>setAtualizaLista(true))
+    request.then(()=>{setAtualizaLista(true)
+        setArrayHabitsteste(true)})
 
     }
 
@@ -53,7 +59,7 @@ export default function ShowHabit({day, setAtualizaLista}){
                 <Top>
                
                     <h2>{day.name}</h2>
-                    <h2 onClick={Delet}>Apagar</h2>
+                    <h2 onClick={Delet}> <BiTrash/></h2>
                 </Top>
                
                <WeekStyle>

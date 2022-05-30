@@ -7,18 +7,19 @@ import ShowHabit from "./ShowHabit";
 import styled from "styled-components";
 
 
+
+
 export default function ShowHabits({datesHabit, setAtualizaLista}){
 
     const [arrayHabits, setArrayHabits]=useState(false)
 
- 
-
-
-	
-	 
-    
+    const [arrayHabitsteste, setArrayHabitsteste]=useState(false)
 
     const  {dates, setDates} = useContext(UserContext)
+
+    const  {totalHabit, setTotalHabit} = useContext(UserContext)
+
+    
 
     const config = {
         headers: {
@@ -51,12 +52,23 @@ function tratarFalha(erro) {
 	console.log(statusCode);
 }
 
+
+
+    const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/trackit/habits/today", config)
+    request.then(answer=> {
+    
+        setTotalHabit(answer.data.length)
+        console.log(totalHabit)
+    });
+
+
     return(
         <>
 
                  {
+                     !arrayHabits ? <></> :  
                     
-                     arrayHabits.length===0 || !arrayHabits ?
+                     arrayHabits.length===0 ?
                      <h1>Você não tem nenhum hábito cadastrado ainda. Adicione um hábito para começar a trackear!</h1>
                      :
 
@@ -64,7 +76,7 @@ function tratarFalha(erro) {
                          {
                          
                     arrayHabits.map((name, index)=><ShowHabit day={name} key={index} 
-                    index={index} setAtualizaLista={setAtualizaLista}/>)
+                    index={index} setAtualizaLista={setAtualizaLista}  setArrayHabitsteste={setArrayHabitsteste}/>)
                          }
 
                     </HabitsStyle>

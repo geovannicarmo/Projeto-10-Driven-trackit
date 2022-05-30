@@ -8,12 +8,16 @@ export default function TodayTop({arrayHabits})
 {
     const  {feito, setFeito} = useContext(UserContext)
 
+    const  {totalHabit, setTotalHabit} = useContext(UserContext)
+
 
     let feitos = arrayHabits.filter((feito)=>(feito.done))
 
-    let percentual= ((feitos.length/arrayHabits.length)*100).toFixed()
+    let percentual= ((feitos.length/totalHabit)*100).toFixed()
 
     setFeito(percentual)
+
+
 
 return(
     
@@ -26,7 +30,7 @@ return(
     <h3> Nenhum hábito concluído ainda </h3>
     :
 
-    <h2> {percentual} % dos hábitos concluídos </h2> 
+    <h2> {percentual} % dos hábitos concluídos  </h2> 
         }
     </Top>
     
